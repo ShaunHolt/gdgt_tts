@@ -1,0 +1,11 @@
+﻿select g.id, g.name as grp, s.text
+from groups as g inner join strings as s on g.id = s.idgroup
+
+﻿select s.id, s.text
+from strings as s
+where s.idgroup = 4
+order by s.last_used
+
+update strings
+set last_used = strftime('%s', 'now')
+where id = 11

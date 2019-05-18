@@ -1,0 +1,81 @@
+https://raspberrypi.stackexchange.com/questions/76188/how-to-make-pcm5102-dac-work-on-raspberry-pi-zerow
+
+DAC BOARD   > Raspberry Pi 3 Model B connector J8
+-----------------------------------------------
+SCK         > Not wired (Internally generated)
+BCK         > PIN 12    (GPIO18)
+DIN         > PIN 40    (GPIO21)
+LRCK        > PIN 35    (GPIO19)
+GND         > PIN 6     (GND) Ground
+VIN         > PIN 2     (5V)
+
+
+sudo raspi-config
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo halt
+aplay -l
+cd /boot
+l
+ll
+ls -l
+nano config.txt
+sudo nano config.txt
+sudo reboot
+aplay -l
+aplay
+sudo apt-get install mpg123
+speaker-test -c2 --test=wav -w /usr/share/sounds/alsa/Front_Center.wav
+mpg123 http://ice1.somafm.com/u80s-128-mp3
+history
+sudo apt-get install espeak
+espeak "Text you wish to hear back" 2>/dev/null
+espeak -ven-us "Welcome to Dexter tutorial" 2>/dev/null
+espeak -ven+f4 "Welcome to Dexter tutorial" 2>/dev/null
+espeak -ven+f1 "Welcome to Dexter tutorial" 2>/dev/null
+espeak -ven+f2 "Welcome to Dexter tutorial" 2>/dev/null
+sudo apt-get install flite
+flite -t "All good men come to the aid of the rebellion"
+flite -lv
+flite -voice kal -t "Look Dave, I can see you're really upset about this."
+flite -voice kal16 -t "Look Dave, I can see you're really upset about this."
+flite -voice awb -t "Look Dave, I can see you're really upset about this."
+flite -voice rms -t "Look Dave, I can see you're really upset about this."
+flite -voice slt -t "Look Dave, I can see you're really upset about this."
+
+pico2wave -w lookdave.wav "Look Dave, I can see you're really upset about this." && aplay lookdave.wav
+pico2wave -w lookdave.wav "Hey! Who did that!" && aplay lookdave.wav
+https://www.openhab.org/addons/voice/picotts/
+ln -s /dev/stdout /var/local/pico2wave.wav
+pico2wave -w /var/local/pico2wave.wav "Look Dave, I can see you're really upset about this." | aplay <- pops bad at the end
+pico2wave -w /tmp/pico2wave.wav "Look Dave, I can see you're really upset about this." && aplay /tmp/pico2wave.wav
+pico2wave -w /tmp/pico2wave.wav -l en-GB "Look Dave, I can see you're really upset about this." && aplay /tmp/pico2wave.wav
+pico2wave -w /tmp/pico2wave.wav -l fr-FR "Ecoute Dave, je vois que tu es vraiment énervé à ce sujet." && aplay /tmp/pico2wave.wav
+pico2wave -w /tmp/pico2wave.wav -l es-ES "Mira Dave, puedo ver que estás realmente molesto por esto." && aplay /tmp/pico2wave.wav
+pico2wave -w /tmp/pico2wave.wav -l de-DE "Sieh mal, Dave, ich kann sehen, dass du wirklich sauer bist." && aplay /tmp/pico2wave.wav
+
+sudo apt-get install python3-pip
+sudo apt-get install python3-setuptools
+sudo python3 setup.py install
+sudo apt install python3-can
+sudo apt install omxplayer
+
+omxplayer -o alsa ../music/02\ We\ Are\ the\ Champions.mp3
+
+while [ 1 ] ; do aplay heart_beat_2.wav ; done
+
+sudo pip3 install adafruit-circuitpython-tpa2016
+
+sudo apt-get install python3-pygame
+
+https://www.pygame.org/docs/ref/mixer.html#pygame.mixer.Sound.get_volume
+from pygame import mixer
+mixer.init()
+sound = mixer.Sound('jump.wav')
+sound.play()
+sound.get_volume()
+sound.set_volume(0.5)
+
+https://www.dexterindustries.com/howto/run-a-program-on-your-raspberry-pi-at-startup/#systemd
+
+sudo nano /lib/systemd/system/tts.service
